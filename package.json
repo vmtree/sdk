@@ -1,0 +1,19 @@
+{
+  "name": "verifiable-merkle-tree-js",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/Nobody-Labs/vmt-js",
+  "author": "Twister Cash",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.6.0",
+    "circom": "^0.5.45",
+    "circomlib": "^0.5.2",
+    "ffjavascript": "^0.2.37",
+    "snarkjs": "0.4.6"
+  },
+  "devDependencies": {
+    "@ethersproject/random": "^5.6.0"
+  }
+}
