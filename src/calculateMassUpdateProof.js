@@ -4,15 +4,15 @@ const { toVmtUpdateProofInput } = require('./utils');
 module.exports = async function calculateMassUpdateProof(
         wasmPath,
         zkeyPath,
-        index,
-        leaf,
+        startIndex,
+        leaves,
         startSubtrees,
         endSubtrees
     ) {
     return fullProve(
         toVmtUpdateProofInput(
-            index,
-            leaf,
+            startIndex,
+            leaves,
             startSubtrees,
             endSubtrees
         ),
