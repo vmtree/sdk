@@ -3,9 +3,9 @@ const { toFE, zeros } = require('./utils');
 module.exports = function calculateSubtrees(
     hasher,
     levels,
+    startIndex,
     leaves,
-    currentSubtrees,
-    startIndex = 0
+    currentSubtrees
 ) {
     if (typeof currentSubtrees === 'undefined') {
         var nextSubtrees = zeros.slice(0, levels).map(toFE);
