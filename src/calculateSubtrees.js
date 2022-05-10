@@ -4,16 +4,17 @@ module.exports = function calculateSubtrees(
     hasher,
     levels,
     leaves,
-    currentSubtrees
+    currentSubtrees,
+    startIndex = 0
 ) {
     if (typeof currentSubtrees === 'undefined') {
         var nextSubtrees = zeros.slice(0, levels).map(toFE);
     } else {
         nextSubtrees = currentSubtrees.map(toFE);
-    }
+    };
 
     for (let i = 0; i < leaves.length; i++) {
-        let currentIndex = i,
+        let currentIndex = i + startIndex,
             currentLevelHash = toFE(leaves[i])
             ;
         for (let j = 0; j < levels; j++) {
@@ -23,11 +24,10 @@ module.exports = function calculateSubtrees(
                 right = zeros[j];
             } else {
                 right = currentLevelHash;
-            }
+            };
             currentLevelHash = hasher.hash([nextSubtrees[j], right]);
             currentIndex /= 2;
-        }
-    }
-
+        };
+    };
     return nextSubtrees;
 };

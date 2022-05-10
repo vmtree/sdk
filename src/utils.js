@@ -37,7 +37,7 @@ function toVmtUpdateSolidityInput(proof, publicSignals) {
     }
 };
 
-function toVmtMassUpdateSolidityInput(index, leaves, startSubtrees, endSubtrees) {
+function toVmtMassUpdateSolidityInput(proof, publicSignals) {
     return {
         p: [
             proof.pi_a[0], proof.pi_a[1], proof.pi_b[0][1], proof.pi_b[0][0],
