@@ -1,5 +1,5 @@
 const { fullProve } = require('snarkjs').groth16;
-const { toVmtUpdateProofInput } = require('./utils');
+const { toVmtMassUpdateProofInput } = require('./utils');
 
 module.exports = async function calculateMassUpdateProof(
         wasmPath,
@@ -10,7 +10,7 @@ module.exports = async function calculateMassUpdateProof(
         endSubtrees
     ) {
     return fullProve(
-        toVmtUpdateProofInput(
+        toVmtMassUpdateProofInput(
             startIndex,
             leaves,
             startSubtrees,

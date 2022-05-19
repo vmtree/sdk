@@ -1,5 +1,5 @@
 const { fullProve } = require('snarkjs').groth16;
-const { toVmtSingleInput } = require('./utils');
+const { toVmtUpdateProofInput } = require('./utils');
 
 module.exports = async function calculateUpdateProof(
         wasmPath,
@@ -10,7 +10,7 @@ module.exports = async function calculateUpdateProof(
         endSubtrees
     ) {
     return fullProve(
-        toVmtSingleInput(
+        toVmtUpdateProofInput(
             index,
             leaf,
             startSubtrees,
