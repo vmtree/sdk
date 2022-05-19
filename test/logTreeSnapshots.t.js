@@ -6,7 +6,7 @@ const {
 
 (function () {
     const randomLeaves = utils.unsafeRandomLeaves(10);
-    const initialTrees = calculateSubtrees(mimcSponge, 20, []);
+    const initialTrees = calculateSubtrees(mimcSponge, 20, 0, []);
     const treeSnapshots = [initialTrees];
     randomLeaves.forEach(
         (leaf, startIndex) => 
@@ -15,7 +15,7 @@ const {
                 20,
                 startIndex,
                 [leaf],
-                treeSnapshots[index]
+                treeSnapshots[startIndex]
             ))
     );
     console.log(treeSnapshots);
