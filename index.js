@@ -5,4 +5,5 @@ module.exports = {
     mimcSponge: require('./src/mimcSponge'),
     poseidon: require('./src/poseidon'),
     utils: require('./src/utils'),
+    verifyProof: require('./src/verifyProof'),
 }
