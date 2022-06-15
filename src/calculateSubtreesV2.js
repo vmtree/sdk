@@ -1,12 +1,12 @@
 const { toFE, zeros } = require('./utils');
 
-module.exports = function calculateSubtrees(
+module.exports = function calculateSubtreesV2({
     hasher,
-    levels,
-    startIndex,
-    leaves,
+    levels = 20,
+    startIndex = 0,
+    leaves = [],
     startSubtrees
-) {
+}) {
     if (typeof startSubtrees === 'undefined') {
         var endSubtrees = zeros.slice(0, levels).map(toFE);
     } else {
