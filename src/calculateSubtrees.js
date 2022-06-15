@@ -26,7 +26,7 @@ module.exports = function calculateSubtrees(
                 right = currentLevelHash;
             };
             currentLevelHash = hasher.hash([nextSubtrees[j], right]);
-            currentIndex /= 2;
+            currentIndex = Math.floor(currentIndex / 2);
         };
     };
     return nextSubtrees;
