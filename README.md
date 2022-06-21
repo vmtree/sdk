@@ -4,7 +4,7 @@ Library for constructing computational integrity proofs to advance the state of 
 ## Lifted files
 I took the below files into this repository to avoid using the older version of ffjavascript. I modified the mimcsponge file to be similar to the poseidon implementation.
 
-## [mimcsponge.js](./src/mimcsponge.js)
+## [mimcsponge.js](./src/mimcSponge.js)
 Lifted directly from a deprecated version of [circomlib](https://github.com/iden3/circomlib/blob/v0.5.5/src/mimcsponge.js), modified to use ethers instead of web3-utils.
 
 ## [poseidon.js](./src/poseidon.js)
