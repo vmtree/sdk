@@ -1,4 +1,4 @@
-# vmt-js
+# vmtree-sdk
 Library for constructing computational integrity proofs to advance the state of verifiable merkle trees. Now using poseidon!
 
 ## Lifted files
