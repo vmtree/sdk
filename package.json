@@ -1,9 +1,9 @@
 {
-  "name": "vmtjs",
+  "name": "vmtree-sdk",
   "version": "0.1.0",
   "main": "index.js",
-  "repository": "https://github.com/Nobody-Labs/vmt-js",
-  "author": "Twister Cash",
+  "repository": "https://github.com/vmtree/sdk",
+  "author": "twister-dev",
   "license": "MIT",
   "private": true,
   "dependencies": {
