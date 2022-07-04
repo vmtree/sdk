@@ -37,12 +37,13 @@ function toFE(value) {
 };
 
 // stringify data for groth16 prover
-function toProofInput({startIndex, leaves, startSubtrees, endSubtrees}) {
+function toProofInput({newRoot, startIndex, startSubtrees, endSubtrees, leaves}) {
     return stringifyBigInts({
+        newRoot,
         startIndex,
-        leaves,
         startSubtrees,
-        endSubtrees
+        endSubtrees,
+        leaves,
     });
 };
 
@@ -54,9 +55,13 @@ function flattenProof(proof) {
     ];
 };
 
-// the solidity contract holds the startIndex, leaves, and filledSubtrees.
-function toSolidityInput({ proof, publicSignals, sliceIndex }) {
-    return { p: flattenProof(proof), newSubtrees: publicSignals.slice(sliceIndex) };
+// use this to generate sol input from the snarkjs output of groth16prove
+function toSolidityInput({ proof, publicSignals, levels = 20 }) {
+    return {
+        newRoot: publicSignals[0],
+        newSubtrees: publicSignals.slice(2 + levels, 2 + 2 * levels),
+        p: flattenProof(proof)
+    };
 };
 
 // unsafe because they are not cryptographic commitments, just dummy values.
