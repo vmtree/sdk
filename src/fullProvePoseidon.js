@@ -32,7 +32,7 @@ module.exports = async function fullProvePoseidon({
     });
     const solidityInput = {
         newRoot,
-        endSubtrees,
+        newSubtrees: endSubtrees,
         p: flattenProof(proof)
     }
     return { proof, publicSignals, solidityInput };
