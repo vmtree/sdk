@@ -1,7 +1,7 @@
 const { toFE, calculateZeros } = require('./utils');
 
 module.exports = function calculateNextRoot({
-    baseString = 'twister',
+    baseString,
     hasher,
     levels = 20,
     startIndex = 0,

@@ -7,7 +7,7 @@ const { flattenProof, toProofInput } = require('./utils');
 module.exports = async function fullProvePoseidon({
     zkeyFileName,
     wasmFileName,
-    baseString = 'twister',
+    baseString,
     startIndex,
     startSubtrees,
     leaves,
