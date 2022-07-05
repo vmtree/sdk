@@ -21,17 +21,23 @@ module.exports = async function fullProvePoseidon({
             leaves,
         });
         console.log(newRoot, endSubtrees);
-        const { proof, publicSignals } = await generateProof({
-            input: toProofInput({
-                newRoot,
-                startIndex,
-                startSubtrees,
-                endSubtrees,
-                leaves
-            }),
-            zkeyFileName,
-            wasmFileName
+        const input = toProofInput({
+            newRoot,
+            startIndex,
+            startSubtrees,
+            endSubtrees,
+            leaves
         });
+        console.log(input);
+        try {
+            var { proof, publicSignals } = await generateProof({
+                input,
+                zkeyFileName,
+                wasmFileName
+            });
+        } catch (err) {
+            console.log(err);
+        }
         console.log(proof);
         const solidityInput = {
             newRoot,
