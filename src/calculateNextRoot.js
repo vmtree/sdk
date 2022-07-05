@@ -1,13 +1,14 @@
 const { toFE, calculateZeros } = require('./utils');
 
 module.exports = function calculateNextRoot({
+    baseString,
     hasher,
     levels = 20,
     startIndex = 0,
     leaves = [],
-    startSubtrees
+    startSubtrees,
 }) {
-    const zeros = calculateZeros({ hasher, levels }).map(toFE);
+    const zeros = calculateZeros({ hasher, levels, baseString }).map(toFE);
     if (typeof startSubtrees === 'undefined') {
         var filledSubtrees = zeros.slice(0, levels);
     } else {

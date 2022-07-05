@@ -8,19 +8,19 @@ const F = new ZqField(Scalar.fromString(
     "21888242871839275222246405745257275088548364400416034343698204186575808495617"
 ));
 
-// zero as string
-function zero() {
-    return BigNumber.from(keccak256(Buffer.from('twister')))
+// zero value as a string
+function getZero(baseString) {
+    return BigNumber.from(keccak256(Buffer.from(baseString)))
         .mod(F.p.toString())
         .toString()
         ;
 }
 
 // empty nodes in the tree, each level gets a unique zero hash
-function calculateZeros({hasher, levels}) {
+function calculateZeros({ hasher, levels = 20, baseString = 'twister' }) {
     // keccak256("twister") % 21888242871839275222246405745257275088548364400416034343698204186575808495617
     // var zero_value = "12203036764200780499285592342002735938107858004988502615570892756707598521180";
-    var zero_value = zero();
+    const zero_value = getZero(baseString);
     const result = [zero_value];
     for (let i = 0; i < levels; i++) {
         zero_value = hasher([zero_value, zero_value]);
@@ -77,9 +77,9 @@ module.exports = {
     F,
     calculateZeros,
     flattenProof,
+    getZero,
     unsafeRandomLeaves,
     toFE,
     toProofInput,
     toSolidityInput,
-    zero,
 };

@@ -1,37 +1,38 @@
 const calculateNextRoot = require('./calculateNextRoot');
 const generateProof = require('./generateProof');
-const poseidon = require('./poseidon');
+const hasher = require('./poseidon');
 
 const { flattenProof, toProofInput } = require('./utils');
 
 module.exports = async function fullProvePoseidon({
     zkeyFileName,
     wasmFileName,
+    baseString,
     startIndex,
-    leaves,
     startSubtrees,
+    leaves,
 }) {
-    const { root, filledSubtrees } = calculateNextRoot({
-        hasher: poseidon,
+    const { root: newRoot, filledSubtrees: endSubtrees } = calculateNextRoot({
+        baseString,
+        hasher,
         startIndex,
         leaves,
         startSubtrees
     });
-    const proofInput = toProofInput({
-        newRoot: root,
-        startIndex,
-        startSubtrees,
-        endSubtrees: filledSubtrees,
-        leaves
-    });
     const { proof, publicSignals } = await generateProof({
-        input: proofInput,
+        input: toProofInput({
+            newRoot,
+            startIndex,
+            startSubtrees,
+            endSubtrees,
+            leaves
+        }),
         zkeyFileName,
         wasmFileName
     });
     const solidityInput = {
         newRoot,
-        newSubtrees: endSubtrees,
+        endSubtrees,
         p: flattenProof(proof)
     }
     return { proof, publicSignals, solidityInput };

@@ -1,6 +1,7 @@
 module.exports = {
     MerkleTree: require('./src/merkleTree'),
     calculateNextRoot: require('./src/calculateNextRoot'),
+    fullProvePoseidon: require('./src/fullProvePoseidon'),
     generateProof: require('./src/generateProof'),
     mimcSponge: require('./src/mimcSponge'),
     poseidon: require('./src/poseidon'),
