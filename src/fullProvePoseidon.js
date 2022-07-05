@@ -20,33 +20,25 @@ module.exports = async function fullProvePoseidon({
             startSubtrees,
             leaves,
         });
-        console.log(newRoot, endSubtrees);
-        const input = toProofInput({
-            newRoot,
-            startIndex,
-            startSubtrees,
-            endSubtrees,
-            leaves
+        const { proof, publicSignals } = await generateProof({
+            input: toProofInput({
+                newRoot,
+                startIndex,
+                startSubtrees,
+                endSubtrees,
+                leaves
+            }),
+            zkeyFileName,
+            wasmFileName
         });
-        console.log(input);
-        try {
-            var { proof, publicSignals } = await generateProof({
-                input,
-                zkeyFileName,
-                wasmFileName
-            });
-        } catch (err) {
-            console.log(err);
-        }
-        console.log(proof);
         const solidityInput = {
             newRoot,
             newSubtrees: endSubtrees,
             p: flattenProof(proof)
         };
-        console.log(solidityInput);
         return { proof, publicSignals, solidityInput };
     } catch(err) {
         console.log(err);
+        throw new Error(err);
     }
 };
