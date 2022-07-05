@@ -12,28 +12,35 @@ module.exports = async function fullProvePoseidon({
     startSubtrees,
     leaves,
 }) {
-    const { root: newRoot, filledSubtrees: endSubtrees } = calculateNextRoot({
-        baseString,
-        hasher,
-        startIndex,
-        startSubtrees,
-        leaves,
-    });
-    const { proof, publicSignals } = await generateProof({
-        input: toProofInput({
-            newRoot,
+    try {
+        const { root: newRoot, filledSubtrees: endSubtrees } = calculateNextRoot({
+            baseString,
+            hasher,
             startIndex,
             startSubtrees,
-            endSubtrees,
-            leaves
-        }),
-        zkeyFileName,
-        wasmFileName
-    });
-    const solidityInput = {
-        newRoot,
-        newSubtrees: endSubtrees,
-        p: flattenProof(proof)
+            leaves,
+        });
+        console.log(newRoot, endSubtrees);
+        const { proof, publicSignals } = await generateProof({
+            input: toProofInput({
+                newRoot,
+                startIndex,
+                startSubtrees,
+                endSubtrees,
+                leaves
+            }),
+            zkeyFileName,
+            wasmFileName
+        });
+        console.log(proof);
+        const solidityInput = {
+            newRoot,
+            newSubtrees: endSubtrees,
+            p: flattenProof(proof)
+        };
+        console.log(solidityInput);
+        return { proof, publicSignals, solidityInput };
+    } catch(err) {
+        console.log(err);
     }
-    return { proof, publicSignals, solidityInput };
 };
