@@ -78,6 +78,7 @@ module.exports = {
     calculateZeros,
     flattenProof,
     getZero,
+    stringifyBigInts,
     unsafeRandomLeaves,
     toFE,
     toProofInput,
